@@ -113,11 +113,14 @@ class MetaImageSlide extends MetaSlide {
         $url         = get_post_meta($this->slide->ID, 'ml-slider_url', true);
         $target      = get_post_meta($this->slide->ID, 'ml-slider_new_window', true) ? 'checked=checked' : '';
         $caption     = htmlentities($this->slide->post_excerpt, ENT_QUOTES, 'UTF-8');
+        $background   = get_post_meta($this->slide->ID, 'ml-slider_background', true);
+
 
         // localisation
         $str_caption    = __("Caption", 'metaslider');
         $str_new_window = __("New Window", 'metaslider');
         $str_url        = __("URL", 'metaslider');
+        $str_background        = __("Background Color", 'metaslider');
 
         // slide row HTML
         $row  = "<tr class='slide image flex responsive nivo coin'>";
@@ -138,6 +141,7 @@ class MetaImageSlide extends MetaSlide {
         $row .= "        <div class='new_window'>";
         $row .= "            <label>{$str_new_window}<input type='checkbox' name='attachment[{$this->slide->ID}][new_window]' {$target} /></label>";
         $row .= "        </div>";
+        $row .= "        <input class='background' type='text' name='attachment[{$this->slide->ID}][background]' placeholder='{$str_background}' value='{$background}' />";
         $row .= "        <input type='hidden' name='attachment[{$this->slide->ID}][type]' value='image' />";
         $row .= "        <input type='hidden' class='menu_order' name='attachment[{$this->slide->ID}][menu_order]' value='{$this->slide->menu_order}' />";
         $row .= "        <input type='hidden' name='resize_slide_id' data-slide_id='{$this->slide->ID}' data-width='{$this->settings['width']}' data-height='{$this->settings['height']}' />";
@@ -199,6 +203,7 @@ class MetaImageSlide extends MetaSlide {
         $slide = array(
             'id' => $this->slide->ID,
             'url' => __(get_post_meta($this->slide->ID, 'ml-slider_url', true)),
+            'background' => __(get_post_meta($this->slide->ID, 'ml-slider_background', true)),
             'target' => get_post_meta($this->slide->ID, 'ml-slider_new_window', true) ? '_blank' : '_self', 
             'src' => $thumb,
             'thumb' => $thumb, // backwards compatibility with Vantage
