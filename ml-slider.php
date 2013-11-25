@@ -231,6 +231,7 @@ class MetaSliderPlugin {
         wp_localize_script( 'metaslider-admin-script', 'metaslider', array( 
             'url' => __("URL", 'metaslider'), 
             'caption' => __("Caption", 'metaslider'),
+            'background' => __("Background", 'metaslider'),
             'new_window' => __("New Window", 'metaslider'),
             'confirm' => __("Are you sure?", 'metaslider'),
             'ajaxurl' => admin_url( 'admin-ajax.php' ),
